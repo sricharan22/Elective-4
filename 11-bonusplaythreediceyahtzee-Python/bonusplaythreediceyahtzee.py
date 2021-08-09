@@ -38,7 +38,80 @@
 # assert(bonusPlayThreeDiceYahtzee(2333413) == (333, 29))
 # assert(bonusPlayThreeDiceYahtzee(2333555) == (555, 35))
 
+def playstep2(hand, dice):
+	li = []
+	while(hand > 0):
+		x = hand % 10
+		hand = hand // 10
+		li.append(x)
+	li.sort(reverse=True)
+	vari = 0
+	cnt = 0
+	for i in li:
+		x = li.count(i)
+		if(x != 1):
+			vari = i
+			cnt = x
+			break
+	newli = []
+	if(cnt == 0):
+		v = li[0]
+		newli.append(v)
+		count = len(newli)
+		while(count<3):
+			k = dice % 10
+			dice  = dice // 10
+			newli.append(k)
+			count += 1
+		newli.sort(reverse=True)
+		res = ""
+		for i in newli:
+			res += str(i)
+		return(int(res),dice)
+	else:
+		for i in range(cnt):
+			newli.append(vari)
+		count = len(newli)
+		while(count<3):
+			k = dice % 10
+			dice  = dice // 10
+			newli.append(k)
+			count += 1
+		newli.sort(reverse=True)
+		res = ""
+		for i in newli:
+			res += str(i)
+		return(int(res),dice)
 
 def bonusplaythreediceyahtzee(dice):
-	# Your code goes here
-	pass
+	count = 0
+	li = []
+	st = ""
+	while(count<3):
+		x = dice%10
+		dice = dice // 10
+		li.append(x)
+		count += 1
+	li = li[::-1]
+	for i in li:
+		st += str(i)
+	hand = int(st)
+	(hand,dice) = playstep2(hand,dice)
+	(hand,dice) = playstep2(hand,dice)
+	cnt = 0
+	var = ""
+	h = str(hand)
+	for i in h:
+		x = h.count(i)
+		if(x > cnt):
+			cnt = x
+			var = i
+	res = 0
+	val = int(var)
+	if(cnt == 1):
+		res = hand//100
+	elif(cnt == 2):
+		res = 10 + val + val
+	elif(cnt == 3):
+		res = 20 + val + val + val
+	return(hand,res)
