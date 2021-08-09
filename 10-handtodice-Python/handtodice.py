@@ -6,5 +6,10 @@
 # Hint: You might find // and % useful here, and also getKthDigit().
 
 def handtodice(hand):
-	# your code goes here
-	pass
+	li = []
+	while(hand>0):
+		x = hand % 10
+		hand = hand // 10
+		li.append(x)
+	li = li[::-1]
+	return tuple(li)
