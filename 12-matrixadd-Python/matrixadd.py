@@ -17,4 +17,18 @@
 
 def matrixadd(L, M):
 	# Your code goes here
-	pass
+	rows = len(L)
+	cols = len(M[0])
+	if(len(L) == len(M) and len(L[0]) == len(M[0])): 
+		try:
+			arr = []
+			for i in range(rows):
+				arr1 = []
+				for j in range(cols):
+					arr1.append(L[i][j] + M[i][j])
+				arr.append(arr1)
+			return arr
+		except IndexError:
+			return None
+	else:
+		return None
