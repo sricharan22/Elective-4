@@ -5,6 +5,8 @@
 
 
 def fun_kth_occurrences(s, n):
-	return 'a'
+	k = set(s)
+
+	return k
 
 
