@@ -8,6 +8,26 @@
 
 
 import math
+def isKaprekar(n):
+    if(n == 1):
+        return True
+    x = n ** 2
+    if(len(str(x)) > 1):
+        left = int(str(x)[:len(str(x))//2])
+        right = int(str(x)[len(str(x))//2:])
+        if(left + right == n):
+            return True
+        else:
+            return False
+    else:
+        return False
 
 def fun_nth_kaprekarnumber(n):
-    return 1;
+    count=0
+    i=0
+    while True:
+        i+=1
+        if isKaprekar(i):
+            count+=1
+        if count==n+1:
+            return i
