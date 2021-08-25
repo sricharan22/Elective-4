@@ -11,6 +11,30 @@
 
 
 import math
+def isKaprekar(n):
+    if(n == 1):
+        return True
+    x = n ** 2
+    if(len(str(x)) > 1):
+        left = int(str(x)[:len(str(x))//2])
+        right = int(str(x)[len(str(x))//2:])
+        if(left + right == n):
+            return True
+        else:
+            return False
+    else:
+        return False
 
 def fun_nearestkaprekarnumber(n):
-    return 1
+    left = 0
+    right = 0
+    for i in range(n,0,-1):
+        if isKaprekar(i):
+            left = i
+            break
+    for i in range(n,n+10000,1):
+        if isKaprekar(i):
+            right = i
+            break
+    x = left if n - left <= right - n else right
+    return x
