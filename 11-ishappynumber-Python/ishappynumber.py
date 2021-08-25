@@ -17,6 +17,26 @@
 # assert(ishappynumber(404) == True)
 # assert(ishappynumber(405) == False)
 
+def happy(k,n):
+    sum = 0
+    temp = k
+    while(temp > 0):
+        a = temp % 10
+        temp = temp // 10
+        sum += ((a) ** 2)
+    if(sum ==1 or sum ==7):
+        return True
+    elif(sum < 10):
+        return False
+    elif(sum == n):
+        return False
+    else:
+        return happy(sum,n)  
+
 def ishappynumber(n):
 	# your code goes here
-	pass
+	if(n < 1):
+		return False
+	else:
+		return happy(n,n)
+
