@@ -9,4 +9,16 @@
 
 def limitedPowerSet(n, k):
     # Your code goes here...
-    pass
+    lis = []
+    res1 = [{}]
+    for i in range(1,n+1):
+        lis.append(i)
+        res1.append({i})
+    for j in range(1, 1 << n):
+        re = []
+        re.append({lis[m] for m in range(n) if(j & (1 << m))})
+        for z in re:
+            if z not in res1:
+                res1.append(z)
+    return res1[:k]
+print(limitedPowerSet(5, 7))
