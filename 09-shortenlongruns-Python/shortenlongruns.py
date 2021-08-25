@@ -11,4 +11,22 @@
 
 def shortenlongruns(L, k):
 	# Your code goes here
-	pass
+	result = []
+	newli = L
+	previous = newli[0]
+	count = 0
+	for i in range(len(newli)):
+		if newli[i] == previous:
+			count += 1
+		else:
+			if count >= k:
+				count = k-1
+			for j in range(count):
+				result.append(previous)
+			count = 1
+			previous = newli[i]
+	if count > k:
+		count = k-1
+	for j in range(count):
+		result.append(previous)
+	return result
